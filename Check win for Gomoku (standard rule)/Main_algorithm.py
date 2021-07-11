@@ -86,11 +86,9 @@ def is_win(data):
             dw.append(data[i])
     db.sort()
     dw.sort()
-    print('List of Black:', db)
-    print('List of White:', dw)
     result_b = lgs(db)
     print('--> Black Win:', result_b)
-
+    print()
     result_w = lgs(dw)
     print('--> White Win:', result_w)
     print()
@@ -103,7 +101,6 @@ while True:
     if data == -1:
         print('\t(File can not load --> Corrupt/ Not available!')
         continue
-    print('DATA:', data)
     print()
     print('Output:', is_win(data))
     inp = input('Quit? y/n: ')

@@ -1,7 +1,4 @@
-+ Latest_Ver_2.py: only algorithm and nothing else.
-+ Ext_Ver2.py: Algorithm and some information + Test time. Use to run test case.
-+ Logic_search: Explain about main algorithm.
-+ 11.psq...17.psq: Test case            {You can open it by Piskvork Program or Yixin GUI}
++ 11.psq...17.psq: Test case            {You can open it by Piskvork Program}
 
 
 
