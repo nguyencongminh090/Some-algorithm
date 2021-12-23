@@ -30,7 +30,7 @@ def lgs(data):
                 lta.append(data[j])
         if c >= 5:
             lta.sort()
-            stack = lta
+            stack = lta + stack
         while stack:
             lst = [data[i]]
             rx = stack[0][0] - data[i][0]
