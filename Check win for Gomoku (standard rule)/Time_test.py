@@ -24,36 +24,39 @@ def test_time(func, n, path='testcase\\'):
     max_white = 10**4*-1
     case_min_white = ''
     case_max_white = ''
-    for i in range(n):
-        f = ofn(f'{path}{i+1}.psq')
-        black = f[::2]
-        white = f[1::2]
-        
-        t1 = clock()
-        result_b = func(black)
-        t2 = clock()
-        cvt_time = '{:.7f}'.format(t2-t1)
-        print(f'[+] Case {i+1} (black) | Len: {len(black)} | Runtime: {cvt_time} sec' )
-        if t2 - t1 < float(min_black):
-            min_black = '{:.7f}'.format(t2-t1)
-            case_min_black = f'Case_min_black {i+1}.psq'
-        if t2 - t1 > float(max_black):
-            max_black = '{:.7f}'.format(t2-t1)
-            case_max_black = f'Case_max_black {i+1}.psq'
-        time_black += t2 - t1
-        
-        t1 = clock()
-        result_w = func(white)
-        t2 = clock()
-        cvt_time = '{:.7f}'.format(t2-t1)
-        print(f'[+] Case {i+1}  (white)| Len: {len(white)} | Runtime: {cvt_time} sec')
-        time_white += t2 - t1
-        if t2 - t1 < float(min_white):
-            min_white = '{:.7f}'.format(t2-t1)
-            case_min_white = f'Case_min_white {i+1}.psq'
-        if t2 - t1 > float(max_white):
-            max_white = '{:.7f}'.format(t2-t1)
-            case_max_white = f'Case_max_white {i+1}.psq'
+    try:
+        for i in range(n):
+            f = ofn(f'{path}{i+1}.psq')
+            black = f[::2]
+            white = f[1::2]
+            
+            t1 = clock()
+            result_b = func(black)
+            t2 = clock()
+            cvt_time = '{:.7f}'.format(t2-t1)
+            print(f'[+] Case {i+1} (black) | Len: {len(black)} | Runtime: {cvt_time} sec' )
+            if t2 - t1 < float(min_black):
+                min_black = '{:.7f}'.format(t2-t1)
+                case_min_black = f'Case_min_black {i+1}.psq'
+            if t2 - t1 > float(max_black):
+                max_black = '{:.7f}'.format(t2-t1)
+                case_max_black = f'Case_max_black {i+1}.psq'
+            time_black += t2 - t1
+            
+            t1 = clock()
+            result_w = func(white)
+            t2 = clock()
+            cvt_time = '{:.7f}'.format(t2-t1)
+            print(f'[+] Case {i+1}  (white)| Len: {len(white)} | Runtime: {cvt_time} sec')
+            time_white += t2 - t1
+            if t2 - t1 < float(min_white):
+                min_white = '{:.7f}'.format(t2-t1)
+                case_min_white = f'Case_min_white {i+1}.psq'
+            if t2 - t1 > float(max_white):
+                max_white = '{:.7f}'.format(t2-t1)
+                case_max_white = f'Case_max_white {i+1}.psq'
+    except:
+        print('File Error: Can not open file PISKVORK')
     time_black = '{:.7f}'.format(time_black)
     time_white = '{:.7f}'.format(time_white)
     print('-'*10)
