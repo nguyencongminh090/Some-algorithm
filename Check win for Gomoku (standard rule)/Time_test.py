@@ -33,12 +33,12 @@ def test_time(func, n, path='testcase\\'):
         result_b = func(black)
         t2 = clock()
         cvt_time = '{:.7f}'.format(t2-t1)
-        print(f'[+] Case {i+1} (black) | Len: {len(black)} | Runtime: {cvt_time} sec | OUTPUT: {result_b}' )
-        if t2 - t1 < min_black:
-            min_black = t2 - t1
+        print(f'[+] Case {i+1} (black) | Len: {len(black)} | Runtime: {cvt_time} sec' )
+        if t2 - t1 < float(min_black):
+            min_black = '{:.7f}'.format(t2-t1)
             case_min_black = f'Case_min_black {i+1}.psq'
-        if t2 - t1 > max_black:
-            max_black = t2 - t1
+        if t2 - t1 > float(max_black):
+            max_black = '{:.7f}'.format(t2-t1)
             case_max_black = f'Case_max_black {i+1}.psq'
         time_black += t2 - t1
         
@@ -46,19 +46,20 @@ def test_time(func, n, path='testcase\\'):
         result_w = func(white)
         t2 = clock()
         cvt_time = '{:.7f}'.format(t2-t1)
-        print(f'[+] Case {i+1}  (white)| Len: {len(white)} | Runtime: {cvt_time} sec | OUTPUT: {result_w}')
+        print(f'[+] Case {i+1}  (white)| Len: {len(white)} | Runtime: {cvt_time} sec')
         time_white += t2 - t1
-        if t2 - t1 < min_white:
-            min_white = t2 - t1
+        if t2 - t1 < float(min_white):
+            min_white = '{:.7f}'.format(t2-t1)
             case_min_white = f'Case_min_white {i+1}.psq'
-        if t2 - t1 > max_white:
-            max_white = t2 - t1
+        if t2 - t1 > float(max_white):
+            max_white = '{:.7f}'.format(t2-t1)
             case_max_white = f'Case_max_white {i+1}.psq'
-
+    time_black = '{:.7f}'.format(time_black)
+    time_white = '{:.7f}'.format(time_white)
     print('-'*10)
     print('***REPORT***')
-    print(f'- Black:\n+ Min time: {min_black}\n+ Testcase: {case_min_black}\n+ Max time: {max_black}\n+ Testcase: {case_max_black}\n==> Total time: {time_black}')
-    print(f'- White:\n+ Min time: {min_white}\n+ Testcase: {case_min_white}\n+ Max time: {max_white}\n+ Testcase: {case_max_white}\n==> Total time: {time_white}')
+    print(f'- Black:\n+ Min time: {min_black}\n+ Testcase: {case_min_black}\n+ Max time: {max_black}\n+ Testcase: {case_max_black}\n==> Total time: {time_black} sec')
+    print(f'- White:\n+ Min time: {min_white}\n+ Testcase: {case_min_white}\n+ Max time: {max_white}\n+ Testcase: {case_max_white}\n==> Total time: {time_white} sec')
     return
         
     
