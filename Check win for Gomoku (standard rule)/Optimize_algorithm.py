@@ -16,28 +16,9 @@ def lgs(data):
     # LOGIC_SEARCH ALGORITHM | BY NGUYEN CONG MINH 16/4/2021 - 10:07 PM
     a = clock()
     for i in range(len(data)):
-        stack = []
-        if data[i][0] < max(data)[0]:
-            for j in range(len(data)):
-                if data[j][0] == data[i][0] + 1:
-                    stack.append(data[j])
-        c = 0
-        lta = []
-        lst = []
-        for j in range(len(data)):
-            if data[i][0] == data[j][0]:
-                c += 1
-                lta.append(data[j])
-        if c >= 5:
-            lta.sort()
-            stack = lta + stack
-        while stack:
+        rule = [[1, 0], [0, 1], [1, -1], [1, 1]]
+        for rx, ry in rule:
             lst = [data[i]]
-            rx = stack[0][0] - data[i][0]
-            ry = stack[0][1] - data[i][1]
-            if abs(rx) > 1 or abs(ry) > 1 or (rx, ry) == (0, 0):
-                stack.remove(stack[0])
-                continue
             x = lst[0][0] + rx
             y = lst[0][1] + ry
             while [x, y] in data:
@@ -52,11 +33,8 @@ def lgs(data):
                     lst.insert(0, [x, y])
                     x -= rx
                     y -= ry
-                    if len(lst) > 5:
-                        break
             if len(lst) == 5:
                 break
-            stack.remove(stack[0])
         if len(lst) == 5:
             break
     try:
