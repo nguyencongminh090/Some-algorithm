@@ -14,24 +14,16 @@ def lgs(data):
         print('Start with:', data[i])
         for rx, ry in rule:
             lst = [data[i]]
-            if [lst[0][0] + rx * 4, lst[0][1] + ry * 4] not in data \
-               and [lst[0][0] + rx * 5, lst[0][1] + ry * 5] in data and [lst[0][0] - rx, lst[0][1] - ry] in data:
+            if [lst[0][0] + rx * 4, lst[0][1] + ry * 4] not in data or \
+               [lst[0][0] + rx * 3, lst[0][1] + ry * 3] not in data or \
+               [lst[0][0] + rx * 2, lst[0][1] + ry * 2] not in data or \
+               [lst[0][0] + rx * 1, lst[0][1] + ry * 1] not in data \
+               or [lst[0][0] + rx * 5, lst[0][1] + ry * 5] in data or [lst[0][0] - rx, lst[0][1] - ry] in data:
                 continue
-            print(f'\tCurrent rule: {rx, ry}')           
-            x = lst[0][0] + rx
-            y = lst[0][1] + ry
-            while [x, y] in data:
-                lst.append([x, y])
-                x += rx
-                y += ry            
-            
+            else:
+                return True
+            print(f'\tCurrent rule: {rx, ry}')
             print('\t---> LST:', lst)
-            if len(lst) == 5:
-                break
-            elif len(lst) > 5:
-                print('LEN: {}, PV: {}'.format(len(lst), lst))
-        if len(lst) == 5:
-            break
     try:
         if len(lst) == 5:
             print('FOUND WIN:', lst)

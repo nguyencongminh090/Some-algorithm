@@ -19,36 +19,21 @@ def lgs(data):
         rule = [[1, 0], [0, 1], [1, -1], [1, 1]]
         for rx, ry in rule:
             lst = [data[i]]
-            if [lst[0][0] + rx * 4, lst[0][1] + ry * 4] not in data \
+            if [lst[0][0] + rx * 4, lst[0][1] + ry * 4] not in data or \
+               [lst[0][0] + rx * 3, lst[0][1] + ry * 3] not in data or \
+               [lst[0][0] + rx * 2, lst[0][1] + ry * 2] not in data or \
+               [lst[0][0] + rx * 1, lst[0][1] + ry * 1] not in data \
                or [lst[0][0] + rx * 5, lst[0][1] + ry * 5] in data or [lst[0][0] - rx, lst[0][1] - ry] in data:
                 continue
-            x = lst[0][0] + rx
-            y = lst[0][1] + ry
-            
-            while [x, y] in data:
-                lst.append([x, y])
-                x += rx
-                y += ry
-                
-            if len(lst) == 5:
-                break
-        if len(lst) == 5:
-            break
-    try:
-        if len(lst) == 5:
-            b = clock()
-            print('FOUND WIN:', lst)
-            
-            print('Runtime: %.7f sec' % (b - a))
-            return True
-        else:
-            b = clock()
-            print('Runtime: %.7f sec' % (b - a))
-            return False
-    except:
-        b = clock()
-        print('Runtime: %.7f sec' % (b - a))
-        return False
+            else:
+                b = clock()
+                print('Runtime: %.7f sec' % (b - a))
+                lst = [[lst[0][0] + rx * k, lst[0][1] + ry * k] for k in range(5)]
+                print('FOUND WIN:', lst)
+                return True
+    b = clock()
+    print('Runtime: %.7f sec' % (b - a))
+    return False
         
 
 def is_win(data):
