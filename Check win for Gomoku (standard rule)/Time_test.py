@@ -79,9 +79,41 @@ def lgs(data):
                or [lst[0][0] + rx * 5, lst[0][1] + ry * 5] in data or [lst[0][0] - rx, lst[0][1] - ry] in data:
                 continue
             else:
-                return True
+                return [[lst[0][0] + rx * k, lst[0][1] + ry * k] for k in range(5)]
     return False
 
 
+def find_win(move,player_moves):
+    x,y = move[0],move[1]
+    lines = [([[x,y+i] for i in range(5)],[x,y-1],[x,y+5]),
+            ([[x+i,y+i] for i in range(5)],[x-1,y-1],[x+5,y+5]),
+            ([[x+i,y] for i in range(5)],[x-1,y],[x+5,y]),
+            ([[x+i,y-i] for i in range(5)],[x-1,y+1],[x+5,y-5]),
+            ([[x,y-i] for i in range(5)],[x,y+1],[x,y-5])]
+    for line,first,last in lines:
+        lst = []
+        for i in range(len(line)):
+            if line[i] in player_moves:
+                lst.append(line[i])
+            else:
+                break 
+        if len(lst)==5:
+            if first in player_moves or last in player_moves:
+                continue
+            return lst
+
+        
+def is_win(player_moves):
+    move_pos = 0
+    while move_pos< len(player_moves):
+        WIN = find_win(player_moves[move_pos],player_moves)
+        if WIN != None:
+            b = clock()
+            return WIN
+        move_pos+= 1
+
+print('LGS Algorithm')
 test_time(lgs, 33)
 
+print('DRT 99')
+test_time(is_win, 33)
