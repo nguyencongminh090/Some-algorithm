@@ -32,7 +32,8 @@ def test_time(func, n, path='testcase\\'):
         t1 = clock()
         result_b = func(black)
         t2 = clock()
-        print(f'[+] Case {i+1} (black) | Len: {len(black)} | Runtime: {t2-t1} sec | OUTPUT: {result_b}' )
+        cvt_time = '{:.7f}'.format(t2-t1)
+        print(f'[+] Case {i+1} (black) | Len: {len(black)} | Runtime: {cvt_time} sec | OUTPUT: {result_b}' )
         if t2 - t1 < min_black:
             min_black = t2 - t1
             case_min_black = f'Case_min_black {i+1}.psq'
@@ -44,7 +45,8 @@ def test_time(func, n, path='testcase\\'):
         t1 = clock()
         result_w = func(white)
         t2 = clock()
-        print(f'[+] Case {i+1}  (white)| Len: {len(white)} | Runtime: {t2-t1} sec | OUTPUT: {result_w}')
+        cvt_time = '{:.7f}'.format(t2-t1)
+        print(f'[+] Case {i+1}  (white)| Len: {len(white)} | Runtime: {cvt_time} sec | OUTPUT: {result_w}')
         time_white += t2 - t1
         if t2 - t1 < min_white:
             min_white = t2 - t1

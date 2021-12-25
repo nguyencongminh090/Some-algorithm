@@ -22,12 +22,12 @@ def ofn(fin):
 
 def find_win(move,player_moves):
     x,y = move[0],move[1]
-    lines = [[[x,y+i] for i in range(5)],
-            [[x+i,y+i] for i in range(5)],
-            [[x+i,y] for i in range(5)],
-            [[x+i,y-i] for i in range(5)],
-            [[x,y-i] for i in range(5)]]
-    for line in lines:
+    lines = [([[x,y+i] for i in range(5)],[x,y-1],[x,y+5]),
+            ([[x+i,y+i] for i in range(5)],[x-1,y-1],[x+5,y+5]),
+            ([[x+i,y] for i in range(5)],[x-1,y],[x+5,y]),
+            ([[x+i,y-i] for i in range(5)],[x-1,y+1],[x+5,y-5]),
+            ([[x,y-i] for i in range(5)],[x,y+1],[x,y-5])]
+    for line,first,last in lines:
         lst = []
         for i in range(len(line)):
             if line[i] in player_moves:
@@ -35,9 +35,7 @@ def find_win(move,player_moves):
             else:
                 break 
         if len(lst)==5:
-            rx = line[1][0] - line[0][0]
-            ry = line[1][1] - line[0][1]
-            if [line[0][0]-rx,line[0][1]-ry] in player_moves or [line[-1][0]+rx,line[-1][1]+ry]  in player_moves:
+            if first in player_moves or last in player_moves:
                 continue
             return lst
         
@@ -63,5 +61,6 @@ while True:
         print(is_win(black))
         print(is_win(white))
     except:
-        
+        black = moves[::2]
+        print(black)
         pass
