@@ -19,20 +19,17 @@ def lgs(data):
         rule = [[1, 0], [0, 1], [1, -1], [1, 1]]
         for rx, ry in rule:
             lst = [data[i]]
+            if [lst[0][0] + rx * 4, lst[0][1] + ry * 4] not in data \
+               or [lst[0][0] + rx * 5, lst[0][1] + ry * 5] in data or [lst[0][0] - rx, lst[0][1] - ry] in data:
+                continue
             x = lst[0][0] + rx
             y = lst[0][1] + ry
+            
             while [x, y] in data:
                 lst.append([x, y])
                 x += rx
                 y += ry
-
-            if len(lst) == 5:
-                x = lst[0][0] - rx
-                y = lst[0][1] - ry
-                while [x, y] in data:
-                    lst.insert(0, [x, y])
-                    x -= rx
-                    y -= ry
+                
             if len(lst) == 5:
                 break
         if len(lst) == 5:
