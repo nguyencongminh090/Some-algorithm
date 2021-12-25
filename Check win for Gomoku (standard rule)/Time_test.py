@@ -57,11 +57,7 @@ def test_time(func, n, path='testcase\\'):
                 max_white = '{:.7f}'.format(t2-t1)
                 case_max_white = f'Case_max_white {i+1}.psq'
     except:
-        print('File Error: Can not open file PISKVORK')
-        os = subprocess.run('dir', shell=True,
-                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE).stdout.decode()
-        print('DEBUG\n', os)
+        continue
     time_black = '{:.7f}'.format(time_black)
     time_white = '{:.7f}'.format(time_white)
     print('-'*10)
