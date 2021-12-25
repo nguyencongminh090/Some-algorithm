@@ -13,7 +13,6 @@ def ofn(fin):
         return -1
     
 def lgs(data):
-    a = clock()
     for i in range(len(data)):
         rule = [[1, 0], [0, 1], [1, -1], [1, 1]]
         for rx, ry in rule:
@@ -25,31 +24,24 @@ def lgs(data):
                or [lst[0][0] + rx * 5, lst[0][1] + ry * 5] in data or [lst[0][0] - rx, lst[0][1] - ry] in data:
                 continue
             else:
-                b = clock()
-                print('Runtime: %.7f sec' % (b - a))
-                lst = [[lst[0][0] + rx * k, lst[0][1] + ry * k] for k in range(5)]
-                print('FOUND WIN:', lst)
                 return True
-    b = clock()
-    print('Runtime: %.7f sec' % (b - a))
     return False
         
 
 def is_win(data):
-    db = []
-    dw = []
-    for i in range(len(data)):
-        if i % 2 == 0:
-            db.append(data[i])
-        else:
-            dw.append(data[i])
-    db.sort()
-    dw.sort()
-    result_b = lgs(db)
-    print('--> Black Win:', result_b)
+    db = data[::2]
+    dw = data[1::2]
+    a = clock()
+    lgs(db)
+    b = clock()
+    print('Len:', len(db))
+    print('Runtime: %.7f sec' % (b - a))    
     print()
-    result_w = lgs(dw)
-    print('--> White Win:', result_w)
+    a = clock()
+    lgs(dw)
+    b = clock()
+    print('Len:', len(dw))
+    print('Runtime: %.7f sec' % (b - a))
     print()
     return 'Done!!!'
 
